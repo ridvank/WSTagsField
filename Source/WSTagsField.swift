@@ -144,7 +144,9 @@ open class WSTagsField: UIScrollView {
             repositionViews()
         }
     }
-
+    
+    open var focusTextFieldOnDelete: Bool = true
+    
     /// By default, the return key is used to create a tag in the field. You can change it, i.e., to use comma or space key instead.
     open var acceptTagOption: WSTagAcceptOption = .return
 
@@ -339,7 +341,9 @@ open class WSTagsField: UIScrollView {
 
         tagView.onDidRequestDelete = { [weak self] tagView, replacementText in
             // First, refocus the text field
-            self?.textField.becomeFirstResponder()
+            if self?.focusTextFieldOnDelete == true {
+                self?.textField.becomeFirstResponder()
+            }
             if (replacementText?.isEmpty ?? false) == false {
                 self?.textField.text = replacementText
             }
