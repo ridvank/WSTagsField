@@ -341,7 +341,7 @@ open class WSTagsField: UIScrollView {
 
         tagView.onDidRequestDelete = { [weak self] tagView, replacementText in
             // First, refocus the text field
-            if self?.focusTextFieldOnDelete == true || self?.tagViews.count == 1 {
+            if self?.focusTextFieldOnDelete == true {
                 self?.textField.becomeFirstResponder()
             }
             if (replacementText?.isEmpty ?? false) == false {
